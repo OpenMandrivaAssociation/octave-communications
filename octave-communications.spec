@@ -14,7 +14,7 @@ Url:		http://octave.sourceforge.net/communications/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Conflicts:	octave-forge <= 20090607
 Requires:	octave >= 3.1.54, octave-signal >= 1.0.0
-BuildRequires:	octave-devel >= 3.1.54
+BuildRequires:	octave-devel >= 3.1.54, MesaGL-devel, MesaGLU-devel
 
 %description
 This Octave toolkit contains functions for digital communication, error
