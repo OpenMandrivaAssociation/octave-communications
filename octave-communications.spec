@@ -1,41 +1,38 @@
-%define	pkgname communications
+%define octpkg Communications
+
+# Exclude .oct files from provides
+%define __provides_exclude_from ^%{octpkglibdir}/.*.oct$
 
 Summary:	Digital communication tools for Octave
-Name:		octave-%{pkgname}
-Version:	1.1.1
-Release:	2
-Source0:	%{pkgname}-%{version}.tar.gz
-License:	GPLv2+
+Name:		octave-%{octpkg}
+Version:	1.2.1
+Release:	1
+Source0:	http://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
+License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		http://octave.sourceforge.net/communications/
-Conflicts:	octave-forge <= 20090607
-Requires:	octave >= 3.1.54, octave-signal >= 1.0.0
-BuildRequires:	octave-devel >= 3.1.54
-BuildRequires:  pkgconfig(gl)
-BuildRequires:  pkgconfig(glu)
-BuildRequires:  hdf5-devel
-Requires:       octave(api) = %{octave_api}
+Url:		https://octave.sourceforge.io/%{octpkg}/
+
+BuildRequires:	octave-devel >= 3.4
+
+Requires:	octave(api) = %{octave_api}
+Requires:	octave-signal >= 1.1.3
+
 Requires(post): octave
 Requires(postun): octave
 
 %description
-This Octave toolkit contains functions for digital communication, error
-correcting codes, source code functions, modulation, and Galois fields.
+Digital Communications, Error Correcting Codes (Channel Code), Source Code functions, Modulation and Galois Fields
+
+This package is part of community Octave-Forge collection.
 
 %prep
-%setup -q -c %{pkgname}-%{version}
-cp %{SOURCE0} .
+%setup -qcT
+
+%build
+%octave_pkg_build -T
 
 %install
-%__install -m 755 -d %{buildroot}%{_datadir}/octave/packages/
-%__install -m 755 -d %{buildroot}%{_libdir}/octave/packages/
-export OCT_PREFIX=%{buildroot}%{_datadir}/octave/packages
-export OCT_ARCH_PREFIX=%{buildroot}%{_libdir}/octave/packages
-octave -q --eval "pkg prefix $OCT_PREFIX $OCT_ARCH_PREFIX; pkg install -verbose -nodeps -local %{pkgname}-%{version}.tar.gz"
-
-tar zxf %{SOURCE0}
-
-%clean
+%octave_pkg_install
 
 %post
 %octave_cmd pkg rebuild
@@ -47,6 +44,10 @@ tar zxf %{SOURCE0}
 %octave_cmd pkg rebuild
 
 %files
-%{_datadir}/octave/packages/%{pkgname}-%{version}
-%{_libdir}/octave/packages/%{pkgname}-%{version}
+%dir %{octpkglibdir}
+%{octpkglibdir}/*
+%dir %{octpkgdir}
+%{octpkgdir}/*
+%doc %{octpkg}-%{version}/NEWS
+%doc %{octpkg}-%{version}/COPYING
 

@@ -1,4 +1,2 @@
-removed_sources:
-  communications-1.0.10.tar.gz: b51523d8b10f10fd5519bd218e9bf6d37f698a70
 sources:
-  communications-1.1.1.tar.gz: 8c358c02ddd84047db62d5f36125630ea940e41b
+  "communications-1.2.1.tar.gz":   bf70d8c315c2239e168c02522482c81e4b912968
