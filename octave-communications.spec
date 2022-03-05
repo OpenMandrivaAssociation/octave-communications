@@ -1,18 +1,16 @@
-%define octpkg Communications
-
-# Exclude .oct files from provides
-%define __provides_exclude_from ^%{octpkglibdir}/.*.oct$
+%global octpkg communications
 
 Summary:	Digital communication tools for Octave
 Name:		octave-%{octpkg}
-Version:	1.2.1
+Version:	1.2.4
 Release:	1
 Source0:	http://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		https://octave.sourceforge.io/%{octpkg}/
 
-BuildRequires:	octave-devel >= 3.4
+BuildRequires:	octave-devel >= 4.4.0
+BuildRequires:	octave-signal >= 1.1.3
 
 Requires:	octave(api) = %{octave_api}
 Requires:	octave-signal >= 1.1.3
@@ -21,18 +19,33 @@ Requires(post): octave
 Requires(postun): octave
 
 %description
-Digital Communications, Error Correcting Codes (Channel Code), Source Code functions, Modulation and Galois Fields
+Digital Communications, Error Correcting Codes (Channel Code), Source Code
+functions, Modulation and Galois Fields.
 
 This package is part of community Octave-Forge collection.
 
+%files
+%license COPYING
+%doc NEWS
+%dir %{octpkglibdir}
+%{octpkglibdir}/*
+%dir %{octpkgdir}
+%{octpkgdir}/*
+
+#---------------------------------------------------------------------------
+
 %prep
-%setup -qcT
+%autosetup -n %{octpkg}-%{version}
 
 %build
-%octave_pkg_build -T
+%set_build_flags
+%octave_pkg_build
 
 %install
 %octave_pkg_install
+
+%check
+%octave_pkg_check
 
 %post
 %octave_cmd pkg rebuild
@@ -42,12 +55,4 @@ This package is part of community Octave-Forge collection.
 
 %postun
 %octave_cmd pkg rebuild
-
-%files
-%dir %{octpkglibdir}
-%{octpkglibdir}/*
-%dir %{octpkgdir}
-%{octpkgdir}/*
-%doc %{octpkg}-%{version}/NEWS
-%doc %{octpkg}-%{version}/COPYING
 
