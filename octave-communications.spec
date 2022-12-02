@@ -4,10 +4,10 @@ Summary:	Digital communication tools for Octave
 Name:		octave-%{octpkg}
 Version:	1.2.4
 Release:	1
-Source0:	http://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
+Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
 License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		https://octave.sourceforge.io/%{octpkg}/
+Url:		https://packages.octave.org/%{octpkg}/
 
 BuildRequires:	octave-devel >= 4.4.0
 BuildRequires:	octave-signal >= 1.1.3
@@ -21,8 +21,6 @@ Requires(postun): octave
 %description
 Digital Communications, Error Correcting Codes (Channel Code), Source Code
 functions, Modulation and Galois Fields.
-
-This package is part of community Octave-Forge collection.
 
 %files
 %license COPYING
