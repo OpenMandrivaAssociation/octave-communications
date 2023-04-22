@@ -1,16 +1,16 @@
 %global octpkg communications
 
 Summary:	Digital communication tools for Octave
-Name:		octave-%{octpkg}
+Name:		octave-communications
 Version:	1.2.4
-Release:	1
-Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
+Release:	2
 License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		https://packages.octave.org/%{octpkg}/
+Url:		https://packages.octave.org/communications/
+Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
 
-BuildRequires:	octave-devel >= 4.4.0
-BuildRequires:	octave-signal >= 1.1.3
+BuildRequires:  octave-devel >= 4.4.0
+BuildRequires:  octave-signal >= 1.1.3
 
 Requires:	octave(api) = %{octave_api}
 Requires:	octave-signal >= 1.1.3
@@ -19,21 +19,21 @@ Requires(post): octave
 Requires(postun): octave
 
 %description
-Digital Communications, Error Correcting Codes (Channel Code), Source Code
-functions, Modulation and Galois Fields.
+Digital Communications, Error Correcting Codes (Channel Code), Source
+Code functions, Modulation and Galois Fields.
 
 %files
 %license COPYING
 %doc NEWS
-%dir %{octpkglibdir}
-%{octpkglibdir}/*
 %dir %{octpkgdir}
 %{octpkgdir}/*
+%dir %{octpkglibdir}
+%{octpkglibdir}/*
 
 #---------------------------------------------------------------------------
 
 %prep
-%autosetup -n %{octpkg}-%{version}
+%autosetup -p1 -n %{octpkg}-%{version}
 
 %build
 %set_build_flags
