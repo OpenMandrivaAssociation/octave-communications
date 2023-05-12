@@ -2,8 +2,8 @@
 
 Summary:	Digital communication tools for Octave
 Name:		octave-communications
-Version:	1.2.4
-Release:	2
+Version:	1.2.6
+Release:	1
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		https://packages.octave.org/communications/
